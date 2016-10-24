@@ -104,7 +104,7 @@ int main(int argc, char** argv)
 	// Start server and handle requests
 
 	QHttpServer server(&app);
-	server.listen("1337", [&](QHttpRequest * req, QHttpResponse * res)
+	server.listen(QHostAddress::Any, 1337, [&](QHttpRequest * req, QHttpResponse * res)
 	{
 		QHttpHttpServerRequestImpl r(req);
 		const auto t = router.findFirstRoute(r);
@@ -120,9 +120,11 @@ int main(int argc, char** argv)
 			res->end();
 		}
 	});
+
 	if (!server.isListening())
 	{
 		return -1;
 	}
+
 	return app.exec();
 }
