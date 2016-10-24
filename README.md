@@ -1,6 +1,6 @@
-# HTTP Routing Library for POCO
+# HTTP Routing Library for QHttpServer
 
-Depends on [libhttproute](https://github.com/mfreiholz/libhttproute-cpp)
+Depends on [libhttproute](https://github.com/mfreiholz/libhttproute-cpp) and [QHttp](https://github.com/azadkuh/qhttp)
 
 ## Legal
 
