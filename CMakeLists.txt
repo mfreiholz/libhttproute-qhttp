@@ -2,18 +2,16 @@ cmake_minimum_required(VERSION 3.0)
 project(libhttproute-qhttp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
-
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Network REQUIRED)
-include_directories(${Qt5Core_INCLUDE_DIRS})
-include_directories(${Qt5Network_INCLUDE_DIRS})
-
-find_package(QHttp REQUIRED)
-include_directories(${QHTTP_INCLUDE_DIRS})
-#add_definitions(-DQHTTP_EXPORT)
+set(CMAKE_AUTOMOC ON)
 
 find_package(LibHttpRoute REQUIRED)
 include_directories(${LIBHTTPROUTE_INCLUDE_DIRS})
+
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Network REQUIRED)
+
+find_package(QHttp REQUIRED)
+include_directories(${QHTTP_INCLUDE_DIRS})
 
 if(WIN32)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -30,6 +28,8 @@ target_link_libraries(
 	${PROJECT_NAME}
 	${LIBHTTPROUTE_LIBRARY}
 	${QHTTP_LIBRARY}
+	Qt5::Core
+	Qt5::Network
 )
 
 # demo binary
